@@ -381,4 +381,19 @@ a:focus{
 @media (max-width: 900px){
   #contact .cv4-grid{ grid-template-columns: 1fr !important; }
 }
+/* ✅ FINAL: Contact v4 layout (desktop side-by-side, mobile stacked) */
+#contact .cv4-grid{
+  display: grid;
+  grid-template-columns: minmax(0,1fr) 420px;
+  gap: 22px;
+  align-items: start;
+}
+
+#contact .cv4-col{ min-width: 0; }
+
+@media (max-width: 900px){
+  #contact .cv4-grid{ grid-template-columns: 1fr; }
+  #contact .cv4-rows{ grid-template-columns: 1fr; }
+  #contact .cv4-textarea{ min-height: 120px; }
+}
 
