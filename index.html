@@ -459,7 +459,71 @@
         <p class="cv4-sub">Tell me briefly about your project or consultation. I reply within 24 hours.</p>
         <span class="cv4-underline"></span>
 
-       
+       <div class="cv4-grid">
+  <div class="cv4-col cv4-form">
+    <div class="cv4-card">
+      <h3 class="cv4-h3">Send a Message</h3>
+      <p class="cv4-p">Share your goals and timeline. I’ll follow up with next steps.</p>
+
+      <form class="cv4-rows" id="cv4ContactForm"
+            action="https://formspree.io/f/xqeddjrp"
+            method="POST" novalidate>
+
+        <input class="cv4-input" name="fullName" type="text" placeholder="Full name" required>
+        <input class="cv4-input" name="email" type="email" placeholder="Email address" required>
+        <input class="cv4-input cv4-span2" name="subject" type="text" placeholder="Subject (optional)">
+        <textarea class="cv4-textarea cv4-span2" name="message" placeholder="Your message..." required></textarea>
+
+        <input type="hidden" name="_subject" value="New Message from Website Contact Form">
+        <input type="text" name="_gotcha" style="display:none">
+
+        <button type="submit" class="cv4-btn cv4-span2">Send Message</button>
+        <p class="cv4-p cv4-span2" id="cv4FormStatus" style="margin:8px 0 0;"></p>
+      </form>
+
+      <script>
+        (function () {
+          const form = document.getElementById("cv4ContactForm");
+          const statusEl = document.getElementById("cv4FormStatus");
+          const btn = form.querySelector('button[type="submit"]');
+
+          form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const fd = new FormData(form);
+            if (!fd.get("fullName")?.trim() || !fd.get("email")?.trim() || !fd.get("message")?.trim()) {
+              statusEl.textContent = "Please fill in Full name, Email, and Message.";
+              return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = "Sending...";
+            statusEl.textContent = "";
+
+            try {
+              const res = await fetch(form.action, {
+                method: "POST",
+                body: fd,
+                headers: { "Accept": "application/json" }
+              });
+
+              if (!res.ok) throw new Error("Request failed");
+
+              form.reset();
+              statusEl.textContent = "Message sent ✅ I will reply soon.";
+            } catch (err) {
+              statusEl.textContent = "Failed ❌ Please try again.";
+            } finally {
+              btn.disabled = false;
+              btn.textContent = "Send Message";
+            }
+          });
+        })();
+      </script>
+
+    </div>
+  </div>
+</div>
 
           <div class="cv4-col cv4-info">
             <div class="cv4-card cv4-info-card">
@@ -529,6 +593,7 @@
   <script src="2021200000018_ass2.js"></script>
 </body>
 </html>
+
 
 
 
