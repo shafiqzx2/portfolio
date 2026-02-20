@@ -320,3 +320,32 @@ a:focus{
     grid-template-columns: 1fr !important;
   }
 }
+
+
+
+/* Desktop: force 2 columns side-by-side */
+@media (min-width: 901px){
+  #contact .cv4-grid{
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 24px !important;
+    align-items: start !important;
+  }
+
+  /* IMPORTANT: stop each column from taking full row */
+  #contact .cv4-col{
+    width: auto !important;
+    max-width: none !important;
+  }
+
+  /* If any card is forcing full width, keep it inside column */
+  #contact .cv4-card{
+    width: 100% !important;
+  }
+}
+
+/* Mobile: stack (already ok) */
+@media (max-width: 900px){
+  #contact .cv4-grid{ grid-template-columns: 1fr !important; }
+}
+
