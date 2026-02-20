@@ -349,3 +349,36 @@ a:focus{
   #contact .cv4-grid{ grid-template-columns: 1fr !important; }
 }
 
+
+
+/* FIX: Desktop এ form + info পাশাপাশী */
+@media (min-width: 901px){
+  #contact .cv4-grid{
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 24px !important;
+    align-items: start !important;
+  }
+
+  /* যদি আগেই info কে full-row span করা থাকে, সেটা কাটবে */
+  #contact .cv4-info{
+    grid-column: 2 / 3 !important;
+    width: auto !important;
+  }
+
+  #contact .cv4-form{
+    grid-column: 1 / 2 !important;
+    width: auto !important;
+  }
+
+  /* কোনো card যদি full-row span করায়, সেটা কাটবে */
+  #contact .cv4-info-card{
+    grid-column: auto !important;
+  }
+}
+
+/* Mobile এ stack ঠিক থাকবে */
+@media (max-width: 900px){
+  #contact .cv4-grid{ grid-template-columns: 1fr !important; }
+}
+
